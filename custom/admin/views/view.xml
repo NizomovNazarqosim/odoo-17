@@ -1,0 +1,60 @@
+<odoo>
+
+    <menuitem id="menu_create_student" name="Create Student" parent="menu_root" action="action_create_student" groups="base.group_erp_manager"/>
+    <menuitem id="menu_create_course" name="Create Course" parent="menu_root" action="action_create_course" groups="base.group_erp_manager"/>
+    <menuitem id="menu_view_students" name="View Students" parent="menu_root" action="action_view_students" groups="base.group_erp_manager"/>
+
+
+    <record id="action_create_student" model="ir.actions.act_window">
+    <field name="name">Create Student</field>
+    <field name="res_model">edu.student</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="your_module_name.view_form_student"/>
+    <field name="target">new</field>
+</record>
+
+<record id="action_create_course" model="ir.actions.act_window">
+    <field name="name">Create Course</field>
+    <field name="res_model">edu.course</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="your_module_name.view_form_course"/>
+    <field name="target">new</field>
+</record>
+
+    <record id="action_view_students" model="ir.actions.act_window">
+    <field name="name">View Students</field>
+    <field name="res_model">learning.center.student</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+    <record id="view_tree_payment" model="ir.ui.view">
+    <field name="name">Student Payments Tree</field>
+    <field name="model">learning.center.payment</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="amount"/>
+            <field name="comment"/>
+        </tree>
+    </field>
+</record>
+
+
+    <record id="view_form_student" model="ir.ui.view">
+    <field name="name">Student Form</field>
+    <field name="model">learning.center.student</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="payments" widget="one2many_list" options="{'no_create': True, 'no_create_edit': True}"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+</odoo>
+
+
